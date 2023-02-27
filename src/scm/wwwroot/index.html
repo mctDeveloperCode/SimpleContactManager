@@ -9,7 +9,7 @@
         <!-- API -->
         <script>
             function LoadThings(processThings) {
-                fetch("api/stuff")
+                fetch("api/things")
                     .then((response) => response.json())
                     .then((things) => processThings(things));
             }

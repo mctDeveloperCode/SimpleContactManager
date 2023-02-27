@@ -12,7 +12,7 @@ app.UseStaticFiles(
     });
 
 app.MapGet(
-    "api/stuff",
+    "api/things",
     () => """[{"left":"top and left","right":"top and right"},{"left":"bottom left yo","right":"last one out!!"},{"left":"wait, waht now?","right":"THERE ARE THREE OF THEM?!?!"}]""");
 
 app.Run();
