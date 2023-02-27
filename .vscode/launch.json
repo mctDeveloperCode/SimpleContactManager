@@ -10,7 +10,7 @@
             "request": "launch",
             "preLaunchTask": "build",
             // If you have changed target frameworks, make sure to update the program path.
-            "program": "${workspaceFolder}/out/scm/bin/Debug/net6.0/scm.dll",
+            "program": "${workspaceFolder}/out/scm/bin/Debug/net7.0/scm.dll",
             "args": [],
             "cwd": "${workspaceFolder}/src/scm",
             "stopAtEntry": false,
