@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <meta charset="utf-8" />
+
+        <title>Simple Contact Manager</title>
+
+        <!-- API -->
+        <script>
+            function LoadThings(processThings) {
+                fetch("api/stuff")
+                    .then((response) => response.json())
+                    .then((things) => processThings(things));
+            }
+
+        </script>
+
+        <!-- HTML Formatting -->
+        <script>
+            LoadThings(PopulateThingsTable);
+
+            function PopulateThingsTable(things) {
+                let thingsHTML = "";
+
+                things.forEach((thing) => {
+                    thingsHTML = thingsHTML.concat(
+                        "<tr><td>",
+                        thing.left,
+                        "</td><td>",
+                        thing.right,
+                        "</td></tr>"
+                    );
+                });
+
+                GetThingsTableElement().innerHTML = thingsHTML;
+            }
+
+            function GetThingsTableElement() {
+                return document.getElementById("things_table");
+            }
+        </script>
+    </head>
+
+    <body>
+        <h1>Simple Contact Manager</h1>
+        <table>
+            <thead>
+                <th>Left Side</th>
+                <th>Right Side</th>
+            </thead>
+            <tbody id="things_table">
+                <!-- Filled dynamically -->
+            </tbody>
+        </table>
+    </body>
+</html>
