@@ -5,11 +5,7 @@ app.UseHttpsRedirection();
 
 app.UseDefaultFiles();
 
-app.UseStaticFiles(
-    new StaticFileOptions
-    {
-        DefaultContentType = "text/html; charset=utf-8"
-    });
+app.UseStaticFiles();
 
 app.MapGet(
     "api/things",
