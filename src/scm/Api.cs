@@ -2,7 +2,7 @@ namespace SimpleContactManager.Api;
 
 internal static class ScmApi
 {
-    public record Thing
+    public sealed record Thing
     {
         public required string Left { get; init; }
         public required string Right { get; init; }
