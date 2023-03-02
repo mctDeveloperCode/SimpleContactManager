@@ -8,17 +8,30 @@
 
         <!-- API -->
         <script>
-            function LoadThings(processThings) {
+            function GetThings(processThings) {
                 fetch("api/things")
                     .then((response) => response.json())
                     .then((things) => processThings(things));
             }
 
+            function DeleteThing(thing) {
+                fetch("api/things", {
+                    method: "delete",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(thing),
+                })
+                    .then(window.location.href = window.location.href);
+            }
         </script>
 
         <!-- HTML Formatting -->
         <script>
-            LoadThings(PopulateThingsTable);
+            LoadThings();
+
+            function LoadThings() {
+                GetThings(PopulateThingsTable)
+                    .then(window.location.reload());
+            }
 
             function PopulateThingsTable(things) {
                 let thingsHTML = "";
@@ -29,7 +42,9 @@
                         thing.left,
                         "</td><td>",
                         thing.right,
-                        "</td></tr>"
+                        "</td><td><input type='button' value='Delete' onclick='DeleteThing(",
+                        JSON.stringify(thing),
+                        ").then(LoadThings());' /></td></tr>"
                     );
                 });
 
@@ -44,6 +59,17 @@
 
     <body>
         <h1>Simple Contact Manager</h1>
+
+        <form action="api/things" method="post">
+            <h2>Create Thing</h2>
+            <label for="left_input">Left:</label><br />
+            <input type="text" id="left_input" name="Left" /><br />
+            <label for="right_input">Right:</label><br />
+            <input type="text" id="right_input" name="Right" /><br /><br />
+            <input type="submit" value="Create Thing" />
+        </form>
+
+        <h2>Old Things</h2>
         <table>
             <thead>
                 <th>Left Side</th>
