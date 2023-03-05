@@ -8,19 +8,26 @@
 
         <!-- API -->
         <script>
-            function GetThings(processThings) {
-                fetch("api/things")
+            function CreateThingApi(thing) {
+                return fetch("api/things", {
+                    method: "post",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(thing),
+                });
+            }
+
+            function GetThingsApi(processThings) {
+                return fetch("api/things")
                     .then((response) => response.json())
                     .then((things) => processThings(things));
             }
 
-            function DeleteThing(thing) {
-                fetch("api/things", {
+            function DeleteThingApi(thing) {
+                return fetch("api/things", {
                     method: "delete",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify(thing),
-                })
-                    .then(window.location.href = window.location.href);
+                });
             }
         </script>
 
@@ -28,9 +35,32 @@
         <script>
             LoadThings();
 
+            function CreateThing() {
+                let left_input = GetLeftInput();
+                let right_input = GetRightInput();
+
+                CreateThingApi({
+                    left: left_input.value,
+                    right: right_input.value,
+                }).then(LoadThings());
+
+                left_input.value = "";
+                right_input.value = "";
+            }
+
             function LoadThings() {
-                GetThings(PopulateThingsTable)
-                    .then(window.location.reload());
+                GetThingsApi(PopulateThingsTable);
+            }
+
+            function DeleteThing(thing) {
+                DeleteThingApi(thing).then(LoadThings());
+            }
+
+            function DeleteThingButton(thing) {
+                return "<input type='button' value='Delete' onclick='DeleteThing(".concat(
+                    JSON.stringify(thing),
+                    ")' />"
+                );
             }
 
             function PopulateThingsTable(things) {
@@ -42,9 +72,9 @@
                         thing.left,
                         "</td><td>",
                         thing.right,
-                        "</td><td><input type='button' value='Delete' onclick='DeleteThing(",
-                        JSON.stringify(thing),
-                        ").then(LoadThings());' /></td></tr>"
+                        "</td><td>",
+                        DeleteThingButton(thing),
+                        "</td></tr>"
                     );
                 });
 
@@ -54,13 +84,20 @@
             function GetThingsTableElement() {
                 return document.getElementById("things_table");
             }
+
+            function GetLeftInput() {
+                return document.getElementById("left_input");
+            }
+            function GetRightInput() {
+                return document.getElementById("right_input");
+            }
         </script>
     </head>
 
     <body>
         <h1>Simple Contact Manager</h1>
 
-        <form action="api/things" method="post">
+        <form action="javascript:CreateThing()">
             <h2>Create Thing</h2>
             <label for="left_input">Left:</label><br />
             <input type="text" id="left_input" name="Left" /><br />

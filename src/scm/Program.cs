@@ -12,16 +12,8 @@ app.MapGet("api/things", ScmApi.GetThings);
 
 app.MapPost(
     "api/things",
-    (HttpRequest httpRequest) =>
-    {
-        ScmApi.CreateThing(
-            new ScmApi.Thing()
-            {
-                Left = httpRequest.Form["Left"].ToString(),
-                Right = httpRequest.Form["Right"].ToString()
-            });
-        return Results.Redirect("/");
-    });
+    ([FromBody] ScmApi.Thing thing) =>
+        ScmApi.CreateThing(thing));
 
 app.MapDelete(
     "api/things",
