@@ -6,54 +6,30 @@
 
         <title>Simple Contact Manager</title>
 
-        <!-- API -->
-        <script>
-            function CreateThingApi(thing) {
-                return fetch("api/things", {
-                    method: "post",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify(thing),
-                });
-            }
+        <script src="api/ThingApi.js" type="text/javascript"></script>
 
-            function GetThingsApi(processThings) {
-                return fetch("api/things")
-                    .then((response) => response.json())
-                    .then((things) => processThings(things));
-            }
-
-            function DeleteThingApi(thing) {
-                return fetch("api/things", {
-                    method: "delete",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify(thing),
-                });
-            }
-        </script>
-
-        <!-- HTML Formatting -->
         <script>
             LoadThings();
 
-            function CreateThing() {
-                let left_input = GetLeftInput();
-                let right_input = GetRightInput();
+            function CreateThingFromForm() {
+                let leftInput = GetLeftInput();
+                let rightInput = GetRightInput();
 
-                CreateThingApi({
-                    left: left_input.value,
-                    right: right_input.value,
+                ThingApi.Create({
+                    left: leftInput.value,
+                    right: rightInput.value,
                 }).then(LoadThings());
 
-                left_input.value = "";
-                right_input.value = "";
+                leftInput.value = "";
+                rightInput.value = "";
             }
 
             function LoadThings() {
-                GetThingsApi(PopulateThingsTable);
+                ThingApi.Get(PopulateThingsTable);
             }
 
             function DeleteThing(thing) {
-                DeleteThingApi(thing).then(LoadThings());
+                ThingApi.Delete(thing).then(LoadThings());
             }
 
             function DeleteThingButton(thing) {
@@ -88,6 +64,7 @@
             function GetLeftInput() {
                 return document.getElementById("left_input");
             }
+
             function GetRightInput() {
                 return document.getElementById("right_input");
             }
@@ -97,7 +74,7 @@
     <body>
         <h1>Simple Contact Manager</h1>
 
-        <form action="javascript:CreateThing()">
+        <form action="javascript:CreateThingFromForm()">
             <h2>Create Thing</h2>
             <label for="left_input">Left:</label><br />
             <input type="text" id="left_input" name="Left" /><br />
@@ -107,6 +84,7 @@
         </form>
 
         <h2>Old Things</h2>
+
         <table>
             <thead>
                 <th>Left Side</th>
