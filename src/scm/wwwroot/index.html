@@ -8,9 +8,8 @@
 
         <script src="api/ThingApi.js" type="text/javascript"></script>
 
+        <!-- Create Thing Form -->
         <script>
-            LoadThings();
-
             function CreateThingFromForm() {
                 let leftInput = GetLeftInput();
                 let rightInput = GetRightInput();
@@ -23,6 +22,19 @@
                 leftInput.value = "";
                 rightInput.value = "";
             }
+
+            function GetLeftInput() {
+                return document.getElementById("left_input");
+            }
+
+            function GetRightInput() {
+                return document.getElementById("right_input");
+            }
+        </script>
+
+        <!-- Things Table -->
+        <script>
+            LoadThings();
 
             function LoadThings() {
                 ThingApi.Get(PopulateThingsTable);
@@ -59,14 +71,6 @@
 
             function GetThingsTableElement() {
                 return document.getElementById("things_table");
-            }
-
-            function GetLeftInput() {
-                return document.getElementById("left_input");
-            }
-
-            function GetRightInput() {
-                return document.getElementById("right_input");
             }
         </script>
     </head>
