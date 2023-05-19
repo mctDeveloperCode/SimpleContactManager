@@ -1,8 +1,8 @@
 using Xunit;
 
-namespace scm.Tests;
+namespace SimpleContactManager.Api.Tests;
 
-public class UnitTest1
+public class ScmApiTests
 {
     [Fact]
     public void Test1()
