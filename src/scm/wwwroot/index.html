@@ -17,7 +17,7 @@
                 ThingApi.Create({
                     left: leftInput.value,
                     right: rightInput.value,
-                }).then(LoadThings());
+                }).then(LoadThings);
 
                 leftInput.value = "";
                 rightInput.value = "";
@@ -41,7 +41,7 @@
             }
 
             function DeleteThing(thing) {
-                ThingApi.Delete(thing).then(LoadThings());
+                ThingApi.Delete(thing).then(LoadThings);
             }
 
             function DeleteThingButton(thing) {
