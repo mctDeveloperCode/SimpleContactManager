@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "scm-console", "src\scm-cons
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "scm-lib", "src\scm-lib\scm-lib.csproj", "{D5CB8A19-B769-45E0-8355-B9AC3BD44241}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{428B56D8-6B20-4F7A-AC10-2E826B89CF55}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "scm-lib.tests", "test\scm-lib.tests\scm-lib.tests.csproj", "{B5CEFE35-48FA-45C1-B5A9-ACF82C18D1F5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,9 +30,14 @@ Global
 		{D5CB8A19-B769-45E0-8355-B9AC3BD44241}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D5CB8A19-B769-45E0-8355-B9AC3BD44241}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D5CB8A19-B769-45E0-8355-B9AC3BD44241}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B5CEFE35-48FA-45C1-B5A9-ACF82C18D1F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5CEFE35-48FA-45C1-B5A9-ACF82C18D1F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5CEFE35-48FA-45C1-B5A9-ACF82C18D1F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5CEFE35-48FA-45C1-B5A9-ACF82C18D1F5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{6F1A3D5F-253F-4640-A2C6-C34611740B95} = {91302C0B-346C-4D68-AE2A-E0ECAE8EE304}
 		{D5CB8A19-B769-45E0-8355-B9AC3BD44241} = {91302C0B-346C-4D68-AE2A-E0ECAE8EE304}
+		{B5CEFE35-48FA-45C1-B5A9-ACF82C18D1F5} = {428B56D8-6B20-4F7A-AC10-2E826B89CF55}
 	EndGlobalSection
 EndGlobal
