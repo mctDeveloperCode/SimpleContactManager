@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
+    <AssemblyName>scm</AssemblyName>
     <TargetFramework>net8.0</TargetFramework>
     <RootNamespace>scm_console</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
