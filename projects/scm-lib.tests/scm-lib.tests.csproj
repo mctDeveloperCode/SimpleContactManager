@@ -24,7 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\scm-lib\scm-lib.csproj" />
+    <ProjectReference Include="..\scm-lib\scm-lib.csproj" />
   </ItemGroup>
 
   <ItemGroup>
